@@ -1,49 +1,22 @@
 package com.legacylock.manager;
 
-import com.legacylock.model.User;
-import com.legacylock.model.VaultOwner;
-import com.legacylock.exception.AuthenticationException;
-
+import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
+import com.legacylock.model.Vault;
 
 public class VaultManager {
 
-    private List<User> users;
+    private List<Vault> vaults;
 
     public VaultManager() {
-        users = new CopyOnWriteArrayList<>();
+        vaults = new ArrayList<>();
     }
 
-    public void registerUser(User user) {
-
-        for (User existingUser : users) {
-            if (existingUser.getUsername().equals(user.getUsername())) {
-                System.out.println("Username already exists.");
-                return;
-            }
-        }
-
-        users.add(user);
-        System.out.println("User registered successfully.");
+    public void addVault(Vault vault) {
+        vaults.add(vault);
     }
 
-    public User login(String username, String password) throws AuthenticationException {
-
-        for (User user : users) {
-            if (user.getUsername().equals(username)) {
-                if (user.authenticate(password)) {
-                    return user;
-                } else {
-                    throw new AuthenticationException("Invalid password.");
-                }
-            }
-        }
-
-        throw new AuthenticationException("User not found.");
-    }
-
-    public List<User> getAllUsers() {
-        return users;
+    public List<Vault> getVaults() {
+        return vaults;
     }
 }

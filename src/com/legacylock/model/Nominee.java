@@ -1,13 +1,20 @@
 package com.legacylock.model;
 
-public class Nominee extends User {
+public class Nominee {
 
-    public Nominee(String username, String password) {
-        super(username, password);
+    private String name;
+    private String email;
+
+    public Nominee(String name, String email) {
+        this.name = name;
+        this.email = email;
     }
 
-    @Override
-    public String getRole() {
-        return "Nominee";
+    public String getName() {   
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }
